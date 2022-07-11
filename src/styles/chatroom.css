@@ -1,0 +1,39 @@
+.chatroom-body{
+    overflow-y: auto;
+    height: 78vh;
+    background-color: #282535;
+}
+.chat-messages{
+    background-color: white;
+    margin: 1rem
+}
+
+.form{
+    height: 10vh;
+    position: fixed;
+    bottom: 0;
+    background-color: #181717;
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    font-size: 1.5rem;
+}
+
+.message-field{
+    border: none;
+    line-height: 1.5;
+    width:100%;
+    font-size: 1.5rem;
+    background: #3a3a3a;
+    outline: none;
+    color: #fff;
+    padding: 0 10px;
+}
+.send-button{
+    width: 20%;
+    display: inline-block;
+    background-color:#282753;
+    border: none;
+    font-size: 1.5rem;
+    padding: 15px 32px;
+}

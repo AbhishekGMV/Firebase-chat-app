@@ -1,0 +1,19 @@
+.header{
+    padding: 1rem;
+    background-color:#181717;
+}
+.d-flex{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.btn{
+    cursor: pointer;
+}
+.sign-out{
+    background-color:#282c34;
+    padding: 2rem 0.75rem;
+    color:white;
+    border: none
+}

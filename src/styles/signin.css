@@ -1,0 +1,35 @@
+/* .container{
+    max-width: 500px;
+    height: 100vh;
+} */
+.flex{
+    display: flex;
+    justify-content: center;
+
+}
+
+.chat-box-body{
+    background-color: #282535;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.btn{
+  padding: 1rem 2rem;  
+  cursor: pointer;
+  font-size: 75%
+}
+.sign-in {
+  color: #282c34;
+  background: #fff;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+p{
+  color: white;
+  font-size: 1rem;
+  text-align: center
+}
