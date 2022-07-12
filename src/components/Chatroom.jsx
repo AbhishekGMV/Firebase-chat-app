@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "../styles/chatroom.css";
 import { useState } from "react";
 import ChatHistory from "./ChatHistory";
@@ -16,7 +16,7 @@ const messagesRef = collection(db, "Messages");
 
 export default function Chatroom() {
   const [message, setMessage] = useState("");
-
+  const focus = useRef();
   const { user } = useAuth();
   const sendMessage = (e) => {
     e.preventDefault();
@@ -24,15 +24,18 @@ export default function Chatroom() {
       message: message,
       uid: user.uid,
       image: user.photoURL,
+      name: user.displayName,
       createdAt: serverTimestamp(),
     });
     setMessage("");
+    focus.current.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <div>
+    <>
       <div className="chatroom-body">
-        <ChatHistory />
+        <ChatHistory focus={focus} />
+        {/* <span ref={focus}></span> */}
       </div>
       <form className="form" onSubmit={sendMessage}>
         <input
@@ -49,6 +52,6 @@ export default function Chatroom() {
           🕊️
         </button>
       </form>
-    </div>
+    </>
   );
 }

@@ -11,7 +11,7 @@ import { app } from "../utils/firebase.js";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const db = getFirestore(app);
-export default function ChatHistory() {
+export default function ChatHistory({ focus }) {
   const messagesRef = collection(db, "Messages");
   const messageQuery = query(messagesRef, orderBy("createdAt"), limit(25));
   const [snapshot, loading] = useCollectionData(messageQuery);
@@ -33,6 +33,7 @@ export default function ChatHistory() {
       {messages.map(({ data, key }) => (
         <Chat data={data} key={key} />
       ))}
+      <span ref={focus}></span>
     </div>
   );
 }
