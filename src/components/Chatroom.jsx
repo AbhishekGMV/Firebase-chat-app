@@ -1,18 +1,13 @@
 import React, { useRef } from "react";
-import "../styles/chatroom.css";
 import { useState } from "react";
 import ChatHistory from "./ChatHistory";
-import { app } from "../utils/firebase.js";
+import { messageRef } from "../utils/firebase.js";
 import { useAuth } from "../contexts/AuthContext";
 import {
-  getFirestore,
-  collection,
   addDoc,
   serverTimestamp,
 } from "firebase/firestore";
-
-const db = getFirestore(app);
-const messagesRef = collection(db, "Messages");
+import "../styles/chatroom.css";
 
 export default function Chatroom() {
   const [message, setMessage] = useState("");
@@ -20,11 +15,12 @@ export default function Chatroom() {
   const { user } = useAuth();
   const sendMessage = (e) => {
     e.preventDefault();
-    addDoc(messagesRef, {
+    const {uid, photoURL, displayName} = user
+    addDoc(messageRef, {
       message: message,
-      uid: user.uid,
-      image: user.photoURL,
-      name: user.displayName,
+      uid: uid,
+      image: photoURL,
+      name: displayName,
       createdAt: serverTimestamp(),
     });
     setMessage("");

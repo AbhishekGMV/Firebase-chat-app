@@ -1,10 +1,10 @@
 import Header from "./Header";
 import SignIn from "./SignIn";
-import "../styles/App.css";
 import { AuthProvider } from "../contexts/AuthContext";
-import Chatroom from "./Chatroom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
+import Chatroom from "./Chatroom";
+import "../styles/App.css";
 
 function App() {
   const [user] = useAuthState(auth);

@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Chat from "./Chat";
-import {
-  getFirestore,
-  query,
-  orderBy,
-  limit,
-  collection,
-} from "firebase/firestore";
-import { app } from "../utils/firebase.js";
+import { query, orderBy, limit } from "firebase/firestore";
+import { messageRef } from "../utils/firebase.js";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import Chat from "./Chat";
 
-const db = getFirestore(app);
 export default function ChatHistory({ focus }) {
-  const messagesRef = collection(db, "Messages");
-  const messageQuery = query(messagesRef, orderBy("createdAt"), limit(25));
+  const messageQuery = query(messageRef, orderBy("createdAt"), limit(25));
   const [snapshot, loading] = useCollectionData(messageQuery);
   const [messages, setMessages] = useState([]);
 
