@@ -8,6 +8,7 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import "../styles/chatroom.css";
+import BadWordsFilter from "bad-words";
 
 export default function Chatroom() {
   const [message, setMessage] = useState("");
@@ -16,8 +17,11 @@ export default function Chatroom() {
   const sendMessage = (e) => {
     e.preventDefault();
     const {uid, photoURL, displayName} = user
+    let filter = new BadWordsFilter();
+    let profaneText = filter.clean(message);
+
     addDoc(messageRef, {
-      message: message,
+      message: profaneText,
       uid: uid,
       image: photoURL,
       name: displayName,
